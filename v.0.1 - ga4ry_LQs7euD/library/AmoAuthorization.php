@@ -2,14 +2,11 @@
 
 require_once('AmoRequest.php');
 
-<<<<<<< HEAD
 /**
  * класс авторизации
  * ---
  * 
  */
-=======
->>>>>>> 4af2d459a77d554bf0e7e813b0e30688a4ac81ab
 class AmoAuthorization{
 
     /**
@@ -24,13 +21,9 @@ class AmoAuthorization{
      */
     const URL_METHOD = '/oauth2/access_token';
 
-<<<<<<< HEAD
     public function __construct(AmoAccount $account){
 
         $this->request = new AmoRequest($account);
-=======
-    public function __construct(){
->>>>>>> 4af2d459a77d554bf0e7e813b0e30688a4ac81ab
 
     }
 
@@ -56,12 +49,7 @@ class AmoAuthorization{
         fclose($file['file']);
 
         $data = $this->getCfgFor('getTokensByAuthToken');
-<<<<<<< HEAD
         $response = $this->request->request(array(
-=======
-        $request = new AmoRequest;
-        $response = $request->request(array(
->>>>>>> 4af2d459a77d554bf0e7e813b0e30688a4ac81ab
                 'url' => self::URL_METHOD,
                 'method' => 'POST',
                 'data' => $data
@@ -85,12 +73,7 @@ class AmoAuthorization{
     private function updateAccessToken() : array{ 
 
         $data = $this->getCfgFor('refreshTokens');
-<<<<<<< HEAD
         $response = $this->request->request(array(
-=======
-        $request = new AmoRequest;
-        $response = $request->request(array(
->>>>>>> 4af2d459a77d554bf0e7e813b0e30688a4ac81ab
             'url' => self::URL_METHOD,
             'method' => 'POST',
             'data' => $data

@@ -26,11 +26,7 @@ class AmoRequest{
 
         }
 
-<<<<<<< HEAD
         $auth = new AmoAuthorization($this->account);
-=======
-        $auth = new AmoAuthorization;
->>>>>>> 4af2d459a77d554bf0e7e813b0e30688a4ac81ab
         $tokens = $auth->getTokens();
         $access_token = $tokens['access_token'];
         if($data['url'] == '/oauth2/access_token'){
