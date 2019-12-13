@@ -107,6 +107,6 @@ class Leads extends Authorization
     return $this->request([
       'url' => self::URL_METHOD . '?' . $urn,
       'method' => 'GET'
-    ]);
+    ])['_embedded']['items'];
   }
 }

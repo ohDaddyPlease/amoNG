@@ -18,6 +18,7 @@ class AmoNG
     $this->request = new Request($this->auth);
     $this->logger = new Logger;
     $this->leads = new Leads;
+    $this->contacts = new Contacts;
 
   }
 
