@@ -41,7 +41,7 @@ class Authorization extends Request
   public function authorization()
   {
     if(!$this->cfgExists()) return $this->createCfgFile();
-
+    
     return $this->getTokensByAuthToken();
   }
 
@@ -71,7 +71,7 @@ class Authorization extends Request
     fclose($file['file']);
     unlink($this->cfgFile);
     $this->createCfgFile($cfg);
-
+    
     return $response;
   }
 
