@@ -14,7 +14,7 @@ class Leads extends Authorization
     parent::__construct();
   }
 
-  public function addLeads(array $data = [
+  public function add(array $data = [
       'name'                => 'Новая сделка',  //required
       'created_at'          => '',
       'updated_at'          => '',
@@ -42,7 +42,7 @@ class Leads extends Authorization
     ]);
   }
 
-  public function updateLeads(array $data = [
+  public function update(array $data = [
       'id'                  => '', //required
       'unlink'              => [
                                  'contacts_id' => '',
@@ -75,7 +75,7 @@ class Leads extends Authorization
     ]);
   }
 
-  public function getLeads(array $params = [
+  public function get(array $params = [
     'limit_rows' => '',
     'limit_offset' => '',
     'id' => '', //может быть массивом
@@ -92,17 +92,20 @@ class Leads extends Authorization
   ])
   {
     $urn = '';
-
-    while($current = current($params))
+    foreach($params as $key => $val)
     {
-      if(is_array($current))
-      {
-        
-      }
+      if(!$val) continue;
+      $urn .= $key . '=';
+      if(is_array($val))
+        $urn .= implode(',', $val);
+      else
+        $urn .= $val;
+      if(next($params))
+        $urn .= '&';
     }
 
     return $this->request([
-      'url' => self::URL_METHOD . '' ? '?' : '',
+      'url' => self::URL_METHOD . '?' . $urn,
       'method' => 'GET'
     ]);
   }
