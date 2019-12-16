@@ -49,19 +49,14 @@ class Request
     curl_setopt($curl,CURLOPT_SSL_VERIFYHOST, 2);
     $out = curl_exec($curl);
     $curlCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    $curl_error = curl_error($curl);
-    $curl_errno = curl_errno($curl);
+
+
+
+    //$curl_error = curl_error($curl);
+    //$curl_errno = curl_errno($curl);
     curl_close($curl);
     $curlCode = (int)$curlCode;
-    $errors = [
-      400 => 'Bad request',
-      401 => 'Unauthorized',
-      403 => 'Forbidden',
-      404 => 'Not found',
-      500 => 'Internal server error',
-      502 => 'Bad gateway',
-      503 => 'Service unavailable',
-    ];
+    $errors = Logger::HTTP_CODES['errors'];
     try
     {
       if ($curlCode < 200 && $curlCode > 204)
@@ -73,8 +68,11 @@ class Request
     {
       die('Ошибка: ' . $e->getMessage() . PHP_EOL . 'Код ошибки: ' . $e->getCode());
     }
+
+
+
     $response = json_decode($out, true);
-    if(isset($response['response']['error_code']) || $response === null)
+    if((isset($response['response']['error_code']) || $response === null) && $curlCode !== 204)
     {
       $this->auth->authorization();
 

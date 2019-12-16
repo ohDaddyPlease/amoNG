@@ -32,6 +32,7 @@ class AmoNG
       $this->logger = new Logger;
       $this->leads = new Leads;
       $this->contacts = new Contacts;
+      $this->companies = new Companies;
 
       return;
     }
