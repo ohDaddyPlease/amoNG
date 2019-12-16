@@ -6,14 +6,11 @@ use AmoNG\Authorization;
 
 class Leads extends Authorization
 {
-
   const URL_METHOD = '/api/v2/leads';
-
   public function __construct()
   {
     parent::__construct();
   }
-
   public function add(array $data = [
       'name'                => 'Новая сделка',  //required
       'created_at'          => '',
@@ -41,7 +38,6 @@ class Leads extends Authorization
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
   }
-
   public function update(array $data = [
       'id'                  => '', //required
       'unlink'              => [
@@ -74,7 +70,6 @@ class Leads extends Authorization
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
   }
-
   public function get(array $params = [
     'limit_rows' => '',
     'limit_offset' => '',
@@ -103,7 +98,6 @@ class Leads extends Authorization
       if(next($params))
         $urn .= '&';
     }
-
     return $this->request([
       'url' => self::URL_METHOD . '?' . $urn,
       'method' => 'GET'

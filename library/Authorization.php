@@ -17,7 +17,7 @@ class Authorization extends Request
      *
      * @var string
      */
-    public $cfgFile;
+    public static $cfgFile;
 
     //public $request;
 
@@ -30,7 +30,7 @@ class Authorization extends Request
   {
     parent::__construct($this);
     //$this->request = new Request($this);
-    $this->cfgFile = Account::$subDomain . ".json";
+    //self::$cfgFile = Account::$subDomain . ".json";
   }
 
     /**
@@ -69,7 +69,7 @@ class Authorization extends Request
     $cfg['access_token'] = (isset($response['access_token']) && !empty($response['access_token'])) ? $response['access_token'] : '';
     $cfg['auth_token_used'] = 1;
     fclose($file['file']);
-    unlink($this->cfgFile);
+    unlink(self::$cfgFile);
     $this->createCfgFile($cfg);
     
     return $response;
@@ -94,7 +94,7 @@ class Authorization extends Request
       $cfg['refresh_token'] = (isset($response['refresh_token']) && !empty($response['refresh_token'])) ? $response['refresh_token'] : '';
       $cfg['access_token'] = (isset($response['access_token']) && !empty($response['access_token'])) ? $response['access_token'] : '';
       fclose($file['file']);
-      unlink($this->cfgFile);
+      unlink(self::$cfgFile);
       $this->createCfgFile($cfg);
 
       return $response;
@@ -107,7 +107,7 @@ class Authorization extends Request
      */
   public function cfgExists(): bool
   {
-    return file_exists($this->cfgFile);
+    return file_exists(self::$cfgFile);
   }
 
     /**
@@ -118,8 +118,8 @@ class Authorization extends Request
   public function openCfgFile(): array
   {
     if(!$this->cfgExists()) throw new \Exception('File does not exist!');
-    $file = fopen($this->cfgFile, 'r+');
-    $cfg = fread($file, filesize($this->cfgFile));
+    $file = fopen(self::$cfgFile, 'r+');
+    $cfg = fread($file, filesize(self::$cfgFile));
     $cfg = json_decode($cfg, 1);
 
     return 
@@ -137,7 +137,7 @@ class Authorization extends Request
      */
   public function createCfgFile(array $data = null): array
   {
-    if(!($this->cfgExists() && filesize($this->cfgFile) > 0))
+    if(!($this->cfgExists() && filesize(self::$cfgFile) > 0))
     {
       $cfg = [
         'client_id'       => '',
@@ -149,7 +149,7 @@ class Authorization extends Request
         'code'            => '',
         'auth_token_used' => ''
       ];
-      file_put_contents($this->cfgFile, json_encode($data ? $data : $cfg));
+      file_put_contents(self::$cfgFile, json_encode($data ? $data : $cfg));
 
       return $cfg;
     }
@@ -166,7 +166,7 @@ class Authorization extends Request
      */
     public function getCfgFor(string $type): array{
 
-        if($this->cfgExists() && filesize($this->cfgFile) > 0){
+        if($this->cfgExists() && filesize(self::$cfgFile) > 0){
             $file = $this->openCfgFile();
             $cfg = $file['cfg'];
             fclose($file['file']);

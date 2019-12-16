@@ -6,14 +6,11 @@ use AmoNG\Authorization;
 
 class Contacts extends Authorization
 {
-
   const URL_METHOD = '/api/v2/contacts';
-
   public function __construct()
   {
     parent::__construct();
   }
-
   public function add(array $data = [
       'name'                => 'Новый контакт',  //required
       'first_name'          => '',
@@ -43,7 +40,6 @@ class Contacts extends Authorization
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
   }
-
   public function update(array $data = [
     'id' => '', //required
     'unlink'              => [
@@ -79,7 +75,6 @@ class Contacts extends Authorization
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
   }
-
   public function get(array $params = [
     'id'                  => '', //может быть массивом
     'limit_rows'          => '',
@@ -100,7 +95,6 @@ class Contacts extends Authorization
       if(next($params))
         $urn .= '&';
     }
-
     return $this->request([
       'url' => self::URL_METHOD . '?' . $urn,
       'method' => 'GET'

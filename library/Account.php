@@ -4,27 +4,25 @@ namespace AmoNG;
 
 class Account extends Authorization
 {
-
   public static $subDomain;
   public static $APIurl;
   private $authorized = 0;
   const URL_METHOD = '/api/v2/account';
 
-  public function __construct(string $subDomain)
+  public function __construct(/*string $subDomain*/)
   {
-    $this->setSubDomain($subDomain);
+    //$this->setSubDomain($subDomain);
     parent::__construct();
   }
-
   public function setSubDomain(string $subDomain): Account
   {
     self::$subDomain = $subDomain;
     self::$APIurl ='https://' . self::$subDomain . '.amocrm.ru';
+    Authorization::$cfgFile = self::$subDomain . ".json";
     
     return $this;
   }
-
-  public function getAccount(string $params = null)
+  public function get(string $params = null)
   {
     $response = $this->request( //here $response = $this->request->request( 
       [
@@ -35,37 +33,35 @@ class Account extends Authorization
       return current($response['_embedded']);
 
     return $response;
-
   }
-
-  public function getCustomFileds(){
-    return $this->getAccount('custom_fields');
+  public function getCustomFileds()
+  {
+    return $this->get('custom_fields');
   }
-
-  public function getUsers(){
-    return $this->getAccount('users');
+  public function getUsers()
+  {
+    return $this->get('users');
   }
-
-  public function getPipelines(){
-    return $this->getAccount('pipelines');
+  public function getPipelines()
+  {
+    return $this->get('pipelines');
   }
-
-  public function getGroups(){
-    return $this->getAccount('groups');
+  public function getGroups()
+  {
+    return $this->get('groups');
   }
-
-  public function getNoteTypes(){
-    return $this->getAccount('note_types');
+  public function getNoteTypes()
+  {
+    return $this->get('note_types');
   }
-
-  public function getTaskTypes(){
-    return $this->getAccount('task_types');
+  public function getTaskTypes()
+  {
+    return $this->get('task_types');
   }
-
-  public function getFreeUsers(){
-    return $this->getAccount('users&free_users=Y');
+  public function getFreeUsers()
+  {
+    return $this->get('users&free_users=Y');
   }
-
   public function authorize()
   {
     if($this->authorized) throw new \Exception('This accout has authorized yet');
