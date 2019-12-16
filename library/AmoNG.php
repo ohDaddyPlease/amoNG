@@ -18,7 +18,7 @@ class AmoNG
     $this->modules = explode(',', $modules);
     foreach($this->modules as $key => $module)
     {
-      $this->modules[$key] = trim($module);
+      $this->modules[$key] = trim(strtolower($module));
     }
     $this->modules = array_flip($this->modules);
 
