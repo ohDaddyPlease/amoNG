@@ -41,7 +41,7 @@ class Contacts extends Authorization
       'url'    => self::URL_METHOD,
       'method' => 'POST',
       'data'   => ['add' => [$data]]
-    ]);
+    ])['_embedded']['items'];
   }
 
   public function update(array $data = [
@@ -77,7 +77,7 @@ class Contacts extends Authorization
       'url'    => self::URL_METHOD,
       'method' => 'POST',
       'data'   => ['update' => [$data]]
-    ]);
+    ])['_embedded']['items'];
   }
 
   public function get(array $params = [
