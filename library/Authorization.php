@@ -75,6 +75,11 @@ class Authorization extends Request
     return $response;
   }
 
+  /**
+   * обновляет токены, записывая новые в cfg-файл
+   *
+   * @return array
+   */
   private function updateAccessToken(): array
   {
     $data = $this->getCfgFor('refreshTokens');
