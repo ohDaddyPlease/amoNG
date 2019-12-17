@@ -18,24 +18,24 @@ class Leads extends Authorization
     parent::__construct();
   }
   public function add(array $data = [
-      'name'                => 'Новая сделка',  //required
-      'created_at'          => '',
-      'updated_at'          => '',
-      'status_id'           => '',
-      'pipeline_id'         => '',
-      'responsible_user_id' => '',
-      'sale'                => '',
-      'tags'                => '',
-      'contacts_id'         => '',
-      'company_id'          => '',
-      'catalog_elements_id' => [],
-      'custom_fields'       => [
-                             'id'     => '',
-                             'values' => [
-                                           'value'   => '',
-                                           'subtype' => ''
-                             ]
+    'name'                => 'Новая сделка',  //required
+    'created_at'          => '',
+    'updated_at'          => '',
+    'status_id'           => '',
+    'pipeline_id'         => '',
+    'responsible_user_id' => '',
+    'sale'                => '',
+    'tags'                => '',
+    'contacts_id'         => '',
+    'company_id'          => '',
+    'catalog_elements_id' => [],
+    'custom_fields'       => [
+      'id'     => '',
+      'values' => [
+        'value'   => '',
+        'subtype' => ''
       ]
+    ]
   ])
   {
     return $this->request([
@@ -45,29 +45,29 @@ class Leads extends Authorization
     ])['_embedded']['items'];
   }
   public function update(array $data = [
-      'id'                  => '', //required
-      'unlink'              => [
-                                 'contacts_id' => '',
-                                 'company_id'  => ''
-      ],
-      'name'                => 'Обновленная сделка',
-      'created_at'          => '',
-      'updated_at'          => '', //required
-      'status_id'           => '',
-      'pipeline_id'         => '',
-      'responsible_user_id' => '',
-      'sale'                => '',
-      'tags'                => '',
-      'contacts_id'         => '',
-      'company_id'          => '',
-      'catalog_elements_id' => [],
-      'custom_fields'       => [
-                                  'id'     => '',
-                                  'values' => [
-                                                'value'   => '',
-                                                'subtype' => ''
-                                  ]
+    'id'                  => '', //required
+    'unlink'              => [
+      'contacts_id' => '',
+      'company_id'  => ''
+    ],
+    'name'                => 'Обновленная сделка',
+    'created_at'          => '',
+    'updated_at'          => '', //required
+    'status_id'           => '',
+    'pipeline_id'         => '',
+    'responsible_user_id' => '',
+    'sale'                => '',
+    'tags'                => '',
+    'contacts_id'         => '',
+    'company_id'          => '',
+    'catalog_elements_id' => [],
+    'custom_fields'       => [
+      'id'     => '',
+      'values' => [
+        'value'   => '',
+        'subtype' => ''
       ]
+    ]
   ])
   {
     return $this->request([
@@ -93,15 +93,14 @@ class Leads extends Authorization
   ])
   {
     $urn = '';
-    foreach($params as $key => $val)
-    {
-      if(!$val) continue;
+    foreach ($params as $key => $val) {
+      if (!$val) continue;
       $urn .= $key . '=';
-      if(is_array($val))
+      if (is_array($val))
         $urn .= implode(',', $val);
       else
         $urn .= $val;
-      if(next($params))
+      if (next($params))
         $urn .= '&';
     }
     return $this->request([

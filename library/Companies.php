@@ -12,23 +12,23 @@ class companies extends Authorization
     parent::__construct();
   }
   public function add(array $data = [
-      'name'                => 'Новая компания',  //required
-      'created_at'          => '',
-      'updated_at'          => '',
-      'responsible_user_id' => '',
-      'created_by'          => '',
-      'tags'                => '',
-      'leads_id'            => [],
-      'customers_id'        => '',
-      'contacts_id'         => '',
-      'custom_fields'       => [
-                             'id'     => '',
-                             'values' => [
-                                           'value'   => '',
-                                           'enum'    => '',
-                                           'subtype' => ''
-                             ]
+    'name'                => 'Новая компания',  //required
+    'created_at'          => '',
+    'updated_at'          => '',
+    'responsible_user_id' => '',
+    'created_by'          => '',
+    'tags'                => '',
+    'leads_id'            => [],
+    'customers_id'        => '',
+    'contacts_id'         => '',
+    'custom_fields'       => [
+      'id'     => '',
+      'values' => [
+        'value'   => '',
+        'enum'    => '',
+        'subtype' => ''
       ]
+    ]
   ])
   {
     return $this->request([
@@ -54,12 +54,12 @@ class companies extends Authorization
     'customers_id'        => '',
     'contacts_id'         => '',
     'custom_fields'       => [
-                           'id'     => '',
-                           'values' => [
-                                         'value'   => '',
-                                         'enum'    => '',
-                                         'subtype' => ''
-                           ]
+      'id'     => '',
+      'values' => [
+        'value'   => '',
+        'enum'    => '',
+        'subtype' => ''
+      ]
     ]
   ])
   {
@@ -78,15 +78,14 @@ class companies extends Authorization
   ])
   {
     $urn = '';
-    foreach($params as $key => $val)
-    {
-      if(!$val) continue;
+    foreach ($params as $key => $val) {
+      if (!$val) continue;
       $urn .= $key . '=';
-      if(is_array($val))
+      if (is_array($val))
         $urn .= implode(',', $val);
       else
         $urn .= $val;
-      if(next($params))
+      if (next($params))
         $urn .= '&';
     }
     return $this->request([

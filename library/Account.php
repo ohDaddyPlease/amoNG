@@ -3,13 +3,13 @@
 namespace AmoNG;
 
 /**
- * класс "Аккаунт"
  * содержит необходимые методы для взаимодействия с аккаунтом
  */
 class Account extends Authorization
 {
   /**
    * имя аккаунта
+   * 
    */
   public static $subDomain;
 
@@ -17,7 +17,7 @@ class Account extends Authorization
    * сформированный  API url
    */
   public static $APIurl;
-  
+
   /**
    * метод
    */
@@ -49,15 +49,16 @@ class Account extends Authorization
    * @param string $params
    * @return void
    */
-  public function get(string $params = null): Array
+  public function get(string $params = null): array
   {
     $response = $this->request(
       [
         'url' => self::URL_METHOD . ($params ? '?with=' . $params : '')
       ]
     );
-    if ($params !== null)
+    if ($params !== null) {
       return $response['_embedded'];
+    }
 
     return $response;
   }
@@ -67,7 +68,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getCustomFileds(): Array
+  public function getCustomFileds(): array
   {
     return $this->get('custom_fields');
   }
@@ -77,7 +78,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getUsers(): Array
+  public function getUsers(): array
   {
     return $this->get('users');
   }
@@ -87,7 +88,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getPipelines(): Array
+  public function getPipelines(): array
   {
     return $this->get('pipelines');
   }
@@ -97,7 +98,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getGroups(): Array
+  public function getGroups(): array
   {
     return $this->get('groups');
   }
@@ -107,7 +108,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getNoteTypes(): Array
+  public function getNoteTypes(): array
   {
     return $this->get('note_types');
   }
@@ -117,7 +118,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getTaskTypes(): Array
+  public function getTaskTypes(): array
   {
     return $this->get('task_types');
   }
@@ -127,7 +128,7 @@ class Account extends Authorization
    *
    * @return Array
    */
-  public function getFreeUsers(): Array
+  public function getFreeUsers(): array
   {
     return $this->get('users&free_users=Y');
   }

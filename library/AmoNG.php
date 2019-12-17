@@ -1,6 +1,7 @@
 <?php
 
 namespace AmoNG;
+
 use AmoNG\Account;
 use AmoNG\Logger;
 
@@ -19,7 +20,7 @@ class AmoNG
    * экземпляр класса Request
    */
   public $request;
-  
+
   /**
    * экземпляр класса Logger
    */
@@ -45,7 +46,8 @@ class AmoNG
    */
   private $modules;
 
-  public function __construct(string $modules){
+  public function __construct(string $modules)
+  {
 
     /**
      * подгружаем модули:
@@ -54,15 +56,13 @@ class AmoNG
      * - меняем местами ключ-значение на значение-ключ
      */
     $this->modules = explode(',', $modules);
-    foreach($this->modules as $key => $module)
-    {
+    foreach ($this->modules as $key => $module) {
       $this->modules[$key] = trim(strtolower($module));
     }
     $this->modules = array_flip($this->modules);
 
     // в зависимости от написанных модулей подключаем их
-    if(key_exists('full', $this->modules))
-    {
+    if (key_exists('full', $this->modules)) {
       $this->account = new Account();
       $this->auth = new Authorization;
       $this->request = new Request($this->auth);

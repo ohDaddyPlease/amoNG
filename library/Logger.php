@@ -2,7 +2,8 @@
 
 namespace AmoNG;
 
-class Logger{
+class Logger
+{
 
   const HTTP_CODES = [
     'error' => [
@@ -21,6 +22,5 @@ class Logger{
       204 => 'No content',
     ]
 
-];
-
+  ];
 }
