@@ -4,7 +4,10 @@ namespace AmoNG;
 
 use AmoNG\Authorization;
 
-class companies extends Authorization
+/**
+ * класс для работы с компаниями
+ */
+class Companies extends Authorization
 {
   const URL_METHOD = '/api/v2/companies';
   public function __construct()
