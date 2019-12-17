@@ -31,7 +31,7 @@ class Authorization extends Request
    * производит авторизацию (апдейт и получение токенов), выдает либо полученные токены, 
    * либо пустые поля cfg-файла
    *
-   * @return Array
+   * @return array
    */
   public function authorization(): array
   {
@@ -46,7 +46,7 @@ class Authorization extends Request
    * при первой инициализации получает новосозданные токены, 
    * в последующем обновляет их
    *
-   * @return Array
+   * @return array
    */
   private function getTokensByAuthToken(): array
   {
@@ -101,11 +101,21 @@ class Authorization extends Request
     return $response;
   }
 
+  /**
+   * проверяет, существует ли cfg-файл
+   *
+   * @return boolean
+   */
   public function cfgExists(): bool
   {
     return file_exists(self::$cfgFile);
   }
 
+  /**
+   * открывает файл, ресурс отстается открытым
+   *
+   * @return array
+   */
   public function openCfgFile(): array
   {
     if (!$this->cfgExists()) throw new \Exception('File does not exist!');
@@ -120,6 +130,12 @@ class Authorization extends Request
       ];
   }
 
+  /**
+   * создает cfg-файл
+   *
+   * @param array $data
+   * @return array
+   */
   public function createCfgFile(array $data = null): array
   {
     if (!($this->cfgExists() && filesize(self::$cfgFile) > 0)) {
@@ -139,6 +155,16 @@ class Authorization extends Request
     }
   }
 
+  /**
+   * в зависимости от параметра ворачивает массив с данными:
+   * 
+   * - refreshTokens - поля для обновления токенов
+   * - getTokensByAuthToken - поля для первичной авторизации и получения токенов
+   * - getTokens - поля для совершения запроса
+   *
+   * @param string $type
+   * @return array
+   */
   public function getCfgFor(string $type): array
   {
 
@@ -175,6 +201,11 @@ class Authorization extends Request
         ];
   }
 
+  /**
+   * возвращает токены для совершения запроса
+   *
+   * @return array
+   */
   public function getTokens(): array
   {
     return $this->getCfgFor('getTokens');

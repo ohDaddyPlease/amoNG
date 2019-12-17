@@ -66,7 +66,7 @@ class Account extends Authorization
   /**
    * получить информацию о дополнительных полях
    *
-   * @return Array
+   * @return array
    */
   public function getCustomFileds(): array
   {
@@ -76,7 +76,7 @@ class Account extends Authorization
   /**
    * получить информацию о пользователях
    *
-   * @return Array
+   * @return array
    */
   public function getUsers(): array
   {
@@ -86,7 +86,7 @@ class Account extends Authorization
   /**
    * получить информацию о цифровых воронках
    *
-   * @return Array
+   * @return array
    */
   public function getPipelines(): array
   {
@@ -96,7 +96,7 @@ class Account extends Authorization
   /**
    * получить информацию о группах пользователей
    *
-   * @return Array
+   * @return array
    */
   public function getGroups(): array
   {
@@ -106,7 +106,7 @@ class Account extends Authorization
   /**
    * получить информацию о типах примечаний
    *
-   * @return Array
+   * @return array
    */
   public function getNoteTypes(): array
   {
@@ -116,7 +116,7 @@ class Account extends Authorization
   /**
    * получть информацию о типах задач
    *
-   * @return Array
+   * @return array
    */
   public function getTaskTypes(): array
   {
@@ -126,7 +126,7 @@ class Account extends Authorization
   /**
    * получить информацию о бесплатных пользователях
    *
-   * @return Array
+   * @return array
    */
   public function getFreeUsers(): array
   {
