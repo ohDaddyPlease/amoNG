@@ -2,72 +2,145 @@
 
 namespace AmoNG;
 
+/**
+ * класс "Аккаунт"
+ * содержит необходимые методы для взаимодействия с аккаунтом
+ */
 class Account extends Authorization
 {
+  /**
+   * имя аккаунта
+   */
   public static $subDomain;
+
+  /** 
+   * сформированный  API url
+   */
   public static $APIurl;
-  private $authorized = 0;
+  
+  /**
+   * метод
+   */
   const URL_METHOD = '/api/v2/account';
 
-  public function __construct(/*string $subDomain*/)
+  public function __construct()
   {
-    //$this->setSubDomain($subDomain);
     parent::__construct();
   }
+
+  /**
+   * установить subDomain
+   *
+   * @param string $subDomain
+   * @return Account
+   */
   public function setSubDomain(string $subDomain): Account
   {
     self::$subDomain = $subDomain;
-    self::$APIurl ='https://' . self::$subDomain . '.amocrm.ru';
+    self::$APIurl = 'https://' . self::$subDomain . '.amocrm.ru';
     Authorization::$cfgFile = self::$subDomain . ".json";
-    
+
     return $this;
   }
-  public function get(string $params = null)
+
+  /**
+   * получить общую информацию об аккаунте
+   *
+   * @param string $params
+   * @return void
+   */
+  public function get(string $params = null): Array
   {
-    $response = $this->request( //here $response = $this->request->request( 
+    $response = $this->request(
       [
-        'url' => self::URL_METHOD . ($params ? '?with=' . $params :'')
+        'url' => self::URL_METHOD . ($params ? '?with=' . $params : '')
       ]
     );
-    if($params !== null) 
-      return current($response['_embedded']);
+    if ($params !== null)
+      return $response['_embedded'];
 
     return $response;
   }
-  public function getCustomFileds()
+
+  /**
+   * получить информацию о дополнительных полях
+   *
+   * @return Array
+   */
+  public function getCustomFileds(): Array
   {
     return $this->get('custom_fields');
   }
-  public function getUsers()
+
+  /**
+   * получить информацию о пользователях
+   *
+   * @return Array
+   */
+  public function getUsers(): Array
   {
     return $this->get('users');
   }
-  public function getPipelines()
+
+  /**
+   * получить информацию о цифровых воронках
+   *
+   * @return Array
+   */
+  public function getPipelines(): Array
   {
     return $this->get('pipelines');
   }
-  public function getGroups()
+
+  /**
+   * получить информацию о группах пользователей
+   *
+   * @return Array
+   */
+  public function getGroups(): Array
   {
     return $this->get('groups');
   }
-  public function getNoteTypes()
+
+  /**
+   * получить информацию о типах примечаний
+   *
+   * @return Array
+   */
+  public function getNoteTypes(): Array
   {
     return $this->get('note_types');
   }
-  public function getTaskTypes()
+
+  /**
+   * получть информацию о типах задач
+   *
+   * @return Array
+   */
+  public function getTaskTypes(): Array
   {
     return $this->get('task_types');
   }
-  public function getFreeUsers()
+
+  /**
+   * получить информацию о бесплатных пользователях
+   *
+   * @return Array
+   */
+  public function getFreeUsers(): Array
   {
     return $this->get('users&free_users=Y');
   }
-  public function authorize()
+
+  /**
+   * произвести авторизацию
+   *
+   * @return Account
+   */
+  public function authorize(): Account
   {
-    if($this->authorized) throw new \Exception('This accout has authorized yet');
-    $this->authorized = 1;
+    $this->authorization();
 
-    return $this->authorization();
+    return $this;
   }
-
 }

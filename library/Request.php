@@ -72,7 +72,7 @@ class Request
 
 
     $response = json_decode($out, true);
-    if((isset($response['response']['error_code']) || $response === null) && $curlCode !== 204)
+    if((isset($response['response']['error_code']) || $response === null) && $errors[$curlCode])
     {
       $this->auth->authorization();
 
