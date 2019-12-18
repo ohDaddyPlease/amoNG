@@ -17,7 +17,7 @@
         "ext-fileinfo": "*"
     },
     "autoload": {
-        "psr-0": { "AmoNG\\": "library/" }
+        "psr-4": { "AmoNG\\": "src/AmoNG" }
     },
     "config": {
         "bin-dir": "vendor/bin",
