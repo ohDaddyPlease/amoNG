@@ -1,7 +1,0 @@
-{
-    "name": "ohdaddyplease/among",
-    "description": "библиотека для работы с API amoCRM",
-    "type": "library",
-    "license": "AGPL-3.0",
-    "require": {}
-}
