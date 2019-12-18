@@ -9,11 +9,18 @@
             "email": "kraspvp@mail.ru"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "AmoNG\\": "library/"
-        }
+    "keywords": ["API", "amoCRM", "amoNG"],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-fileinfo": "*"
     },
-    "minimum-stability": "beta",
-    "require": {}
+    "autoload": {
+        "psr-0": { "AmoNG\\": "library/" }
+    },
+    "config": {
+        "bin-dir": "vendor/bin",
+        "process-timeout": 600
+    }
 }
