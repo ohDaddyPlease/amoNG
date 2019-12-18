@@ -17,7 +17,7 @@ abstract class AbstractEntity extends Authorization
   public function add(array $data)
   {
     return $this->request([
-      'url'    => self::$method_url,
+      'url'    => $this->method_url,
       'method' => 'POST',
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
@@ -26,7 +26,7 @@ abstract class AbstractEntity extends Authorization
   public function update(array $data)
   {
     return $this->request([
-      'url'    => self::$method_url,
+      'url'    => $this->method_url,
       'method' => 'POST',
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
@@ -46,7 +46,7 @@ abstract class AbstractEntity extends Authorization
         $urn .= '&';
     }
     return $this->request([
-      'url' => self::$method_url . '?' . $urn,
+      'url' => $this->method_url . '?' . $urn,
       'method' => 'GET'
     ])['_embedded']['items'];
   }
