@@ -15,7 +15,7 @@ class Companies extends Authorization
     parent::__construct();
   }
   public function add(array $data = [
-    'name'                => 'Новая компания',  //required
+    'name'                => 'Новая компания', //required
     'created_at'          => '',
     'updated_at'          => '',
     'responsible_user_id' => '',

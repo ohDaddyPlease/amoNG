@@ -12,7 +12,7 @@ class Contacts extends Authorization
     parent::__construct();
   }
   public function add(array $data = [
-    'name'                => 'Новый контакт',  //required
+    'name'                => 'Новый контакт', //required
     'first_name'          => '',
     'last_name'           => '',
     'created_at'          => '',

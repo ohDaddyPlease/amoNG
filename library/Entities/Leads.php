@@ -18,7 +18,7 @@ class Leads extends Authorization
     parent::__construct();
   }
   public function add(array $data = [
-    'name'                => 'Новая сделка',  //required
+    'name'                => 'Новая сделка', //required
     'created_at'          => '',
     'updated_at'          => '',
     'status_id'           => '',
