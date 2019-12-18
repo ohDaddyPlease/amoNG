@@ -9,6 +9,11 @@
             "email": "kraspvp@mail.ru"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "AmoNG\\": "library/"
+        }
+    },
     "minimum-stability": "beta",
     "require": {}
 }
