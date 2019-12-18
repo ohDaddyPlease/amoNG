@@ -6,7 +6,7 @@ class Logger
 {
 
   const HTTP_CODES = [
-    'error' => [
+    'errors' => [
       400 =>           'Bad request',
       401 =>          'Unauthorized',
       403 =>             'Forbidden',
