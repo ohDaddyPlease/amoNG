@@ -2,3 +2,4 @@ dev/
 projects/
 TODO
 .vscode/
+/vendor/

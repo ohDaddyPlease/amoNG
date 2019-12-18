@@ -1,7 +1,14 @@
 {
     "name": "ohdaddyplease/among",
-    "description": "библиотека для работы с API amoCRM",
+    "description": "PHP библиотека для работы с API amoCRM oauth v2.0",
     "type": "library",
     "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "ohDaddyPlease",
+            "email": "kraspvp@mail.ru"
+        }
+    ],
+    "minimum-stability": "beta",
     "require": {}
 }

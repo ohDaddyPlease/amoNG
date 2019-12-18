@@ -1,6 +1,6 @@
 <?php
 
-namespace AmoNG;
+namespace AmoNG\Entities;
 
 use AmoNG\Authorization;
 

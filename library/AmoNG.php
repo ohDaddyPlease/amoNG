@@ -4,6 +4,9 @@ namespace AmoNG;
 
 use AmoNG\Account;
 use AmoNG\Logger;
+use AmoNG\Leads;
+use AmoNG\Contacts;
+use AmoNG\Companies;
 
 /**
  * главный класс, являющийся входной точкой,
@@ -41,6 +44,11 @@ class AmoNG
    */
   public $contacts;
 
+    /**
+   * экземпляр класса Companies
+   */
+  public $companies;
+
   /**
    * подгружаемые модули, передается строкой
    */
@@ -66,9 +74,9 @@ class AmoNG
       $this->account = new Account();
       $this->auth = new Authorization;
       $this->request = new Request($this->auth);
-      $this->logger = new Logger;
-      $this->leads = new Leads;
-      $this->contacts = new Contacts;
+      //$this->logger = new Logger;
+      //$this->leads = new Leads;
+      //$this->contacts = new Contacts;
       $this->companies = new Companies;
 
       return;
