@@ -1,4 +1,8 @@
 <?php
 
-namespace AmoNG\Abstract;
+namespace AmoNG\Models;
 
+class Test
+{
+
+}

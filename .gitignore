@@ -1,3 +1,4 @@
-/dev
-/projects
+dev/
+projects/
 TODO
+.vscode/
