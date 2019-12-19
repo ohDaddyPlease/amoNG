@@ -4,12 +4,15 @@ namespace AmoNG\Entities;
 
 use AmoNG\Entities\AbstractEntity;
 
-class Contacts extends AbstractEntity
+class Calls extends AbstractEntity
 {
-  protected $method_url = '/api/v2/contacts';
+  protected $method_url = '/api/v2/calls';
 
   public function __construct()
   {
     parent::__construct();
   }
+
+  public function get() { }
+  public function update() { }
 }
