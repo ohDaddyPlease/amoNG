@@ -7,7 +7,7 @@ use AmoNG\Http\Authorization;
 abstract class AbstractEntity extends Authorization
 {
 
-  private $method_url;
+  protected $method_url;
 
   public function __construct()
   {
