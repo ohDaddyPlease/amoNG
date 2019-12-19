@@ -7,6 +7,7 @@ use AmoNG\Logger;
 use AmoNG\Entities\Leads;
 use AmoNG\Entities\Contacts;
 use AmoNG\Entities\Companies;
+use AmoNG\Entities\Calls;
 use AmoNG\Http\Authorization;
 use AmoNG\Http\Request;
 
@@ -51,6 +52,11 @@ class AmoNG
    */
   public $companies;
 
+    /**
+   * экземпляр класса Calls
+   */
+  public $calls;
+
   /**
    * подгружаемые модули, передается строкой
    */
@@ -80,6 +86,7 @@ class AmoNG
       $this->leads = new Leads;
       $this->contacts = new Contacts;
       $this->companies = new Companies;
+      $this->calls = new Calls;
 
       return;
     }
