@@ -32,7 +32,7 @@ abstract class AbstractEntity extends Authorization
     ])['_embedded']['items'];
   }
 
-  //допилить: если сущность найдена одна, то обрезать ее по [0]
+  //допилить: если сущность найдена одна, то обрезать ее по [0] 
 
   public function get(array $params = [])
   {
