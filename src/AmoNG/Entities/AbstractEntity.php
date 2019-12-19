@@ -7,7 +7,7 @@ use AmoNG\Authorization;
 abstract class AbstractEntity extends Authorization
 {
 
-  private $method_url;
+  protected $method_url;
 
   public function __construct()
   {
@@ -34,6 +34,7 @@ abstract class AbstractEntity extends Authorization
 
   public function get(array $params = [])
   {
+    $test = $this->method_url;
     $urn = '';
     foreach ($params as $key => $val) {
       if (!$val) continue;
