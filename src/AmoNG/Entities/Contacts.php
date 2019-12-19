@@ -2,7 +2,7 @@
 
 namespace AmoNG\Entities;
 
-use AmoNG\Authorization;
+use AmoNG\Http\Authorization;
 
 class Contacts extends Authorization
 {
