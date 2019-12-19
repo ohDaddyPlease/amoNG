@@ -7,7 +7,7 @@ use AmoNG\Logger;
 use AmoNG\Entities\Leads;
 use AmoNG\Entities\Contacts;
 use AmoNG\Entities\Companies;
-use AmoNG\Entities\Calls;
+use AmoNG\Telephony\Calls;
 use AmoNG\Http\Authorization;
 use AmoNG\Http\Request;
 
