@@ -10,7 +10,7 @@ use AmoNG\Entities\Companies;
 use AmoNG\Http\Authorization;
 use AmoNG\Http\Request;
 
-/**
+/** 
  * главный класс, являющийся входной точкой,
  * объединяет все инициализации классов
  */

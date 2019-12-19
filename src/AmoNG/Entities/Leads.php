@@ -3,7 +3,7 @@
 namespace AmoNG\Entities;
 
 use AmoNG\Http\Authorization;
-
+ 
 class Leads extends Authorization
 {
   const URL_METHOD = '/api/v2/leads';

@@ -3,7 +3,7 @@
 namespace AmoNG;
 use AmoNG\Http\Authorization;
 
-/**
+/** 
  * содержит необходимые методы для взаимодействия с аккаунтом
  */
 class Account extends Authorization

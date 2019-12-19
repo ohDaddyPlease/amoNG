@@ -68,7 +68,7 @@ class Contacts extends Authorization
       ]
     ]
   ])
-  {
+  { 
     return $this->request([
       'url'    => self::URL_METHOD,
       'method' => 'POST',

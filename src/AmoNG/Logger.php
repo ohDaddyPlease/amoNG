@@ -4,7 +4,7 @@ namespace AmoNG;
 
 class Logger
 {
-
+ 
   const HTTP_CODES = [
     'errors' => [
       400 =>           'Bad request',

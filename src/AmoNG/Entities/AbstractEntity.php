@@ -3,7 +3,7 @@
 namespace AmoNG\Entities;
 
 use AmoNG\Http\Authorization;
-
+ 
 abstract class AbstractEntity extends Authorization
 {
 

@@ -7,7 +7,7 @@ class IncomingCall
 
     public function __construct($caller)
     {
-
+ 
         if (trim(empty($caller)) || strlen(trim((string) $caller)) == 0) throw new \Exception('Phone number must be set');
 
         $this->callerTelephone = trim((string) $caller);

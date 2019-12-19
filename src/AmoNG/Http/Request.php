@@ -6,7 +6,7 @@ use AmoNG\Account;
 use AmoNG\Http\Authorization;
 use AmoNG\Logger;
 
-class Request
+class Request 
 {
   private $auth;
   public function __construct(Authorization $auth)

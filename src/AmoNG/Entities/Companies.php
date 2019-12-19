@@ -3,7 +3,7 @@
 namespace AmoNG\Entities;
 
 use AmoNG\Entities\AbstractEntity;
-
+ 
 /**
  * класс для работы с компаниями
  */
