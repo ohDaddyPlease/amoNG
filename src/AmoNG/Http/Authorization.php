@@ -1,8 +1,8 @@
 <?php
 
-namespace AmoNG;
+namespace AmoNG\Http;
 
-use AmoNG\Request;
+use AmoNG\Http\Request;
 
 /**
  * всё, что связано с авторизацией (полученеи токенов, обновление, хранение, выдача) 

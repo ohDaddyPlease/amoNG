@@ -1,9 +1,10 @@
 <?php
 
-namespace AmoNG;
+namespace AmoNG\Http;
 
 use AmoNG\Account;
-use AmoNG\Authorization;
+use AmoNG\Http\Authorization;
+use AmoNG\Logger;
 
 class Request
 {

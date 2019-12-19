@@ -7,6 +7,8 @@ use AmoNG\Logger;
 use AmoNG\Entities\Leads;
 use AmoNG\Entities\Contacts;
 use AmoNG\Entities\Companies;
+use AmoNG\Http\Authorization;
+use AmoNG\Http\Request;
 
 /**
  * главный класс, являющийся входной точкой,
