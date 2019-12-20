@@ -9,7 +9,11 @@ use AmoNG\Entities\AbstractEntity;
  */
 class Companies extends AbstractEntity
 {
-  protected $method_url = '/api/v2/companies';
+
+  /**
+   * URN, на который будет отправлен запрос
+   */
+  protected $api_method = '/api/v2/companies';
 
   public function __construct()
   {
