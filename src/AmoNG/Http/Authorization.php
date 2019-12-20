@@ -5,8 +5,8 @@ namespace AmoNG\Http;
 use AmoNG\Http\Request;
 
 /** 
- * всё, что связано с авторизацией (полученеи токенов, обновление, хранение, выдача) 
- * находится в данном классе
+ * Класс авторизации: полученеи токенов для запроса, обновление, хранение; произведение авторизации; 
+ * создание файла конфигурации
  * 
  */
 class Authorization extends Request
@@ -18,9 +18,9 @@ class Authorization extends Request
   public static $cfgFile;
 
   /**
-   * метод
+   * URN, на который будет отправлен запрос
    */
-  const URL_METHOD = '/oauth2/access_token';
+  const API_METHOD = '/oauth2/access_token';
 
   public function __construct()
   {
@@ -28,8 +28,8 @@ class Authorization extends Request
   }
 
   /**
-   * производит авторизацию (апдейт и получение токенов), выдает либо полученные токены, 
-   * либо пустые поля cfg-файла
+   * метод для авторизации (апдейт и получение токенов), выдает либо полученные токены, 
+   * либо незаполненные поля cfg-файла
    *
    * @return array
    */
@@ -43,8 +43,8 @@ class Authorization extends Request
   }
 
   /**
-   * при первой инициализации получает новосозданные токены, 
-   * в последующем обновляет их
+   * метод для получения токенов при первой инициализации; если токены были получены ранее, 
+   * то метод обновит их и вернет новые
    *
    * @return array
    */
@@ -58,7 +58,7 @@ class Authorization extends Request
     $data = $this->getCfgFor('getTokensByAuthToken');
     $response = $this->request(
       [
-        'url'    => self::URL_METHOD,
+        'url'    => self::API_METHOD,
         'method' => 'POST',
         'data'   => $data
       ]
@@ -76,7 +76,7 @@ class Authorization extends Request
   }
 
   /**
-   * обновляет токены, записывая новые в cfg-файл
+   * метод обновления токенов. записывая новые в cfg-файл; возвращает массив с новыми токенами
    *
    * @return array
    */
@@ -85,7 +85,7 @@ class Authorization extends Request
     $data = $this->getCfgFor('refreshTokens');
     $response = $this->request(
       [
-        'url'    => self::URL_METHOD,
+        'url'    => self::API_METHOD,
         'method' => 'POST',
         'data'   => $data
       ]
@@ -102,7 +102,7 @@ class Authorization extends Request
   }
 
   /**
-   * проверяет, существует ли cfg-файл
+   * метод проверки существования cfg-файла
    *
    * @return boolean
    */
@@ -112,7 +112,7 @@ class Authorization extends Request
   }
 
   /**
-   * открывает файл, ресурс отстается открытым
+   * метод для открытия cfg-файла. ресурс отстается открытым
    *
    * @return array
    */
@@ -131,7 +131,7 @@ class Authorization extends Request
   }
 
   /**
-   * создает cfg-файл
+   * метод для создания cfg-файла
    *
    * @param array $data
    * @return array
@@ -156,13 +156,13 @@ class Authorization extends Request
   }
 
   /**
-   * в зависимости от параметра ворачивает массив с данными:
+   * метод для получения полей cfg-файла. в зависимости от параметра ворачивает массив с данными
    * 
+   * @param string $type
    * - refreshTokens - поля для обновления токенов
    * - getTokensByAuthToken - поля для первичной авторизации и получения токенов
    * - getTokens - поля для совершения запроса
-   *
-   * @param string $type
+   * 
    * @return array
    */
   public function getCfgFor(string $type): array
@@ -202,7 +202,7 @@ class Authorization extends Request
   }
 
   /**
-   * возвращает токены для совершения запроса
+   * метод получения токенов для совершения запроса
    *
    * @return array
    */
