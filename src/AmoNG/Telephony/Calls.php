@@ -27,7 +27,7 @@ class Calls extends Authorization
   {
     return $this->request([
       'url'    => $this->method_url,
-      'method' => 'POST',
+      'method' =>            'POST',
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
   }
