@@ -59,14 +59,14 @@ class Authorization extends Request
     $response = $this->request(
       [
         'url'    => self::API_METHOD,
-        'method' => 'POST',
-        'data'   => $data
+        'method' =>           'POST',
+        'data'   =>            $data
       ]
     );
     $file = $this->openCfgFile();
     $cfg = $file['cfg'];
-    $cfg['refresh_token'] = (isset($response['refresh_token']) && !empty($response['refresh_token'])) ? $response['refresh_token'] : '';
-    $cfg['access_token'] = (isset($response['access_token']) && !empty($response['access_token'])) ? $response['access_token'] : '';
+    $cfg['refresh_token']   = (isset($response['refresh_token']) && !empty($response['refresh_token'])) ? $response['refresh_token'] : '';
+    $cfg['access_token']    = (isset($response['access_token']) && !empty($response['access_token'])) ? $response['access_token'] : '';
     $cfg['auth_token_used'] = 1;
     fclose($file['file']);
     unlink(self::$cfgFile);
@@ -86,12 +86,12 @@ class Authorization extends Request
     $response = $this->request(
       [
         'url'    => self::API_METHOD,
-        'method' => 'POST',
-        'data'   => $data
+        'method' =>           'POST',
+        'data'   =>            $data
       ]
     );
     $file = $this->openCfgFile();
-    $cfg = $file['cfg'];
+    $cfg  = $file['cfg'];
     $cfg['refresh_token'] = (isset($response['refresh_token']) && !empty($response['refresh_token'])) ? $response['refresh_token'] : '';
     $cfg['access_token'] = (isset($response['access_token']) && !empty($response['access_token'])) ? $response['access_token'] : '';
     fclose($file['file']);
@@ -120,13 +120,13 @@ class Authorization extends Request
   {
     if (!$this->cfgExists()) throw new \Exception('File does not exist!');
     $file = fopen(self::$cfgFile, 'r+');
-    $cfg = fread($file, filesize(self::$cfgFile));
-    $cfg = json_decode($cfg, 1);
+    $cfg  = fread($file, filesize(self::$cfgFile));
+    $cfg  = json_decode($cfg, 1);
 
     return
       [
         'file' => &$file,
-        'cfg'  => $cfg
+        'cfg'  =>   $cfg
       ];
   }
 
@@ -140,14 +140,14 @@ class Authorization extends Request
   {
     if (!($this->cfgExists() && filesize(self::$cfgFile) > 0)) {
       $cfg = [
-        'client_id'       => '',
-        'client_secret'   => '',
-        'refresh_token'   => '',
-        'access_token'    => '',
-        'grant_type'      => 'authorization_code',
+        'client_id'       =>                     '',
+        'client_secret'   =>                     '',
+        'refresh_token'   =>                     '',
+        'access_token'    =>                     '',
+        'grant_type'      =>   'authorization_code',
         'redirect_uri'    => 'https://example.com/',
-        'code'            => '',
-        'auth_token_used' => ''
+        'code'            =>                     '',
+        'auth_token_used' =>                     ''
       ];
       file_put_contents(self::$cfgFile, json_encode($data ? $data : $cfg));
 
@@ -176,27 +176,27 @@ class Authorization extends Request
     if ($type == 'refreshTokens') {
       return
         [
-          'client_id'     => $cfg['client_id'],
+          'client_id'     =>     $cfg['client_id'],
           'client_secret' => $cfg['client_secret'],
-          'grant_type'    => 'refresh_token',
+          'grant_type'    =>       'refresh_token',
           'refresh_token' => $cfg['refresh_token'],
-          'redirect_uri'  => $cfg['redirect_uri']
+          'redirect_uri'  =>  $cfg['redirect_uri']
         ];
     } elseif ($type == 'getTokensByAuthToken')
       return
         [
-          'client_id'     => $cfg['client_id'],
+          'client_id'     =>     $cfg['client_id'],
           'client_secret' => $cfg['client_secret'],
-          'grant_type'    => 'authorization_code',
-          'code'          => $cfg['code'],
-          'redirect_uri'  => $cfg['redirect_uri'],
+          'grant_type'    =>  'authorization_code',
+          'code'          =>          $cfg['code'],
+          'redirect_uri'  =>  $cfg['redirect_uri'],
         ];
     elseif ($type == 'getTokens')
       return
         [
-          'access_token'  => $cfg['access_token'],
+          'access_token'  =>  $cfg['access_token'],
           'refresh_token' => $cfg['refresh_token'],
-          'code'          => $cfg['code']
+          'code'          =>          $cfg['code']
         ];
   }
 

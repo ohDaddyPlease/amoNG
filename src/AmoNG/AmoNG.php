@@ -79,14 +79,14 @@ class AmoNG
 
     // в зависимости от написанных модулей подключаем их
     if (key_exists('full', $this->modules)) {
-      $this->account = new Account();
-      $this->auth = new Authorization;
-      $this->request = new Request($this->auth);
-      $this->logger = new Logger;
-      $this->leads = new Leads;
-      $this->contacts = new Contacts;
+      $this->account   = new Account();
+      $this->auth      = new Authorization;
+      $this->request   = new Request($this->auth);
+      $this->logger    = new Logger;
+      $this->leads     = new Leads;
+      $this->contacts  = new Contacts;
       $this->companies = new Companies;
-      $this->calls = new Calls;
+      $this->calls     = new Calls;
 
       return;
     }

@@ -16,10 +16,10 @@ class Leads extends AbstractEntity
    * стандартные статусы этапов воронок
    */
   const STATUS = [
-    '142' => 'Успешно реализовано',
-    '143' => 'Закрыто и не реализовано',
-    'CLOSED_WON'  => '142',
-    'CLOSED_LOST' => '143'
+    '142'         =>      'Успешно реализовано',
+    '143'         => 'Закрыто и не реализовано',
+    'CLOSED_WON'  =>                      '142',
+    'CLOSED_LOST' =>                      '143'
   ];
 
   public function __construct()

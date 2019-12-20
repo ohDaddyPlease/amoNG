@@ -27,8 +27,8 @@ abstract class AbstractEntity extends Authorization
   public function add(array $data): array
   {
     return $this->request([
-      'url'    => $this->api_method,
-      'method' => 'POST',
+      'url'    =>  $this->api_method,
+      'method' =>             'POST',
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
   }
@@ -43,8 +43,8 @@ abstract class AbstractEntity extends Authorization
   public function update(array $data): array
   {
     return $this->request([
-      'url'    => $this->api_method,
-      'method' => 'POST',
+      'url'    =>     $this->api_method,
+      'method' =>                'POST',
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
   }
@@ -73,7 +73,7 @@ abstract class AbstractEntity extends Authorization
     
     return $this->request([
       'url' => $this->api_method . '?' . $params,
-      'method' => 'GET'
+      'method' =>                          'GET'
     ])['_embedded']['items'];
   }
 }

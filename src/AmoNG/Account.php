@@ -37,8 +37,8 @@ class Account extends Authorization
    */
   public function setSubDomain(string $subDomain): Account
   {
-    self::$subDomain = $subDomain;
-    self::$APIurl = 'https://' . self::$subDomain . '.amocrm.ru';
+    self::$subDomain        = $subDomain;
+    self::$APIurl           = 'https://' . self::$subDomain . '.amocrm.ru';
     Authorization::$cfgFile = self::$subDomain . ".json";
 
     return $this;
