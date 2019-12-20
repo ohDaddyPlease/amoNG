@@ -162,7 +162,6 @@ class Authorization extends Request
    * - refreshTokens - поля для обновления токенов
    * - getTokensByAuthToken - поля для первичной авторизации и получения токенов
    * - getTokens - поля для совершения запроса
-   * 
    * @return array
    */
   public function getCfgFor(string $type): array

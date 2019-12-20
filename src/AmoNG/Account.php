@@ -4,7 +4,7 @@ namespace AmoNG;
 use AmoNG\Http\Authorization;
 
 /** 
- * содержит необходимые методы для взаимодействия с аккаунтом
+ * класс аккаунта. содержит необходимые методы для взаимодействия с аккаунтом, сведения об аккаунте
  */
 class Account extends Authorization
 {
@@ -15,14 +15,14 @@ class Account extends Authorization
   public static $subDomain;
 
   /** 
-   * сформированный  API url
+   * сформированный  API url, состоящий из $subDomain + адрес сервера amoCRM
    */
   public static $APIurl;
 
   /**
-   * метод
+   * URN, на который будет отправлен запрос
    */
-  const URL_METHOD = '/api/v2/account';
+  const API_METHOD = '/api/v2/account';
 
   public function __construct()
   {
@@ -30,7 +30,7 @@ class Account extends Authorization
   }
 
   /**
-   * установить subDomain
+   * метод для установления имени аккаунта $subDomain
    *
    * @param string $subDomain
    * @return Account
@@ -45,7 +45,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить общую информацию об аккаунте
+   * метод получения общей информации об аккаунте
    *
    * @param string $params
    * @return void
@@ -54,7 +54,7 @@ class Account extends Authorization
   {
     $response = $this->request(
       [
-        'url' => self::URL_METHOD . ($params ? '?with=' . $params : '')
+        'url' => self::API_METHOD . ($params ? '?with=' . $params : '')
       ]
     );
     if ($params !== null) {
@@ -65,7 +65,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о дополнительных полях
+   * метод получения общей информации о дополнительных полях
    *
    * @return array
    */
@@ -75,7 +75,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о пользователях
+   * метод получения общей информации о пользователях
    *
    * @return array
    */
@@ -85,7 +85,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о цифровых воронках
+   * метод получения общей информации о цифровых воронках
    *
    * @return array
    */
@@ -95,7 +95,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о группах пользователей
+   * метод получения общей информации о группах пользователей
    *
    * @return array
    */
@@ -105,7 +105,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о типах примечаний
+   * метод получения общей информации о типах примечаний
    *
    * @return array
    */
@@ -115,7 +115,7 @@ class Account extends Authorization
   }
 
   /**
-   * получть информацию о типах задач
+   * метод получения общей информации о типах задач
    *
    * @return array
    */
@@ -125,7 +125,7 @@ class Account extends Authorization
   }
 
   /**
-   * получить информацию о бесплатных пользователях
+   * метод получения общей информации о бесплатных пользователях
    *
    * @return array
    */
@@ -135,7 +135,7 @@ class Account extends Authorization
   }
 
   /**
-   * произвести авторизацию
+   * метод для произведения авторизации
    *
    * @return Account
    */

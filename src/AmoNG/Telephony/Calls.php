@@ -6,6 +6,10 @@ use AmoNG\Http\Authorization;
 
 class Calls extends Authorization
 {
+
+  /**
+   * URN, на который будет отправлен запрос
+   */
   protected $method_url = '/api/v2/calls';
 
   public function __construct()
@@ -13,7 +17,13 @@ class Calls extends Authorization
     parent::__construct();
   }
 
-  public function add(array $data)
+  /**
+   * метод добавления звонков в сущность
+   *
+   * @param array $data
+   * @return array
+   */
+  public function add(array $data): array
   {
     return $this->request([
       'url'    => $this->method_url,

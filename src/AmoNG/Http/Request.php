@@ -6,14 +6,34 @@ use AmoNG\Account;
 use AmoNG\Http\Authorization;
 use AmoNG\Logger;
 
-class Request 
+/**
+ * класс запроса. хранит все данные и содержит метод для совершения запросов
+ */
+class Request
 {
+
+  /**
+   * экземпляр класса авторизации
+   */
   private $auth;
+
   public function __construct(Authorization $auth)
   {
     $this->auth = $auth;
   }
-  public function request(array $data = ['url' => '/api/v2/account', 'method' => 'GET', 'data' => [], 'params' => []])
+
+  /**
+   * метод, реализующий отправку запроса. можно отправить запрос на указанный url
+   * 
+   * @param array $data параметры для отправки запроса
+   * @return array
+   */
+  public function request(array $data = [
+    'url'    => '/api/v2/account',
+    'method' =>             'GET',
+    'data'   =>                [],
+    'params' =>                []
+  ]): array
   {
     if (!empty($data['params']) && isset($data['params'])) {
       $params = [];
@@ -45,11 +65,6 @@ class Request
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
     $out = curl_exec($curl);
     $curlCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-
-
-    //$curl_error = curl_error($curl);
-    //$curl_errno = curl_errno($curl);
     curl_close($curl);
     $curlCode = (int) $curlCode;
     $errors = Logger::HTTP_CODES['errors'];
@@ -60,9 +75,6 @@ class Request
     } catch (\Exception $e) {
       die('Ошибка: ' . $e->getMessage() . PHP_EOL . 'Код ошибки: ' . $e->getCode());
     }
-
-
-
     $response = json_decode($out, true);
     if ((isset($response['response']['error_code']) || $response === null) && $errors[$curlCode]) {
       $this->auth->authorization();
