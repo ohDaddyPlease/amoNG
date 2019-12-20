@@ -6,7 +6,11 @@ use AmoNG\Entities\AbstractEntity;
 
 class Contacts extends AbstractEntity
 {
-  protected $method_url = '/api/v2/contacts';
+
+  /**
+   * URN, на который будет отправлен запрос
+   */
+  protected $api_method = '/api/v2/contacts';
 
   public function __construct()
   {

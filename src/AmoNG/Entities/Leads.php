@@ -6,8 +6,15 @@ use AmoNG\Entities\AbstractEntity;
  
 class Leads extends AbstractEntity
 {
-  protected $method_url = '/api/v2/leads';
 
+  /**
+   * URN, на который будет отправлен запрос
+   */
+  protected $api_method = '/api/v2/leads';
+
+  /**
+   * стандартные статусы этапов воронок
+   */
   const STATUS = [
     '142' => 'Успешно реализовано',
     '143' => 'Закрыто и не реализовано',
