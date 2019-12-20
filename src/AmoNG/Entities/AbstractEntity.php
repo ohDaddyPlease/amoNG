@@ -26,11 +26,19 @@ abstract class AbstractEntity extends Authorization
    */
   public function add(array $data): array
   {
-    return $this->request([
+    $response =  $this->request([
       'url'    =>  $this->api_method,
       'method' =>             'POST',
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
+
+    if(!$response)
+      return ['errors' => 'error'];
+
+    if(count($response) == 1)
+      return $response[0];
+
+    return $response;
   }
 
     /**
@@ -42,11 +50,19 @@ abstract class AbstractEntity extends Authorization
    */
   public function update(array $data): array
   {
-    return $this->request([
+    $response = $this->request([
       'url'    =>     $this->api_method,
       'method' =>                'POST',
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
+
+    if(!$response)
+      return ['errors' => 'error'];
+
+    if(count($response) == 1)
+      return $response[0];
+
+    return $response;
   }
 
   //допилить: если сущность найдена одна, то обрезать ее по [0] 
@@ -71,9 +87,17 @@ abstract class AbstractEntity extends Authorization
         $params .= '&';
     }
     
-    return $this->request([
+    $response = $this->request([
       'url' => $this->api_method . '?' . $params,
       'method' =>                          'GET'
     ])['_embedded']['items'];
+
+    if(!$response)
+      return ['errors' => 'error'];
+
+    if(count($response) == 1)
+      return $response[0];
+
+    return $response;
   }
 }
