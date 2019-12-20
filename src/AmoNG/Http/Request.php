@@ -76,7 +76,7 @@ class Request
       die('Ошибка: ' . $e->getMessage() . PHP_EOL . 'Код ошибки: ' . $e->getCode());
     }
     $response = json_decode($out, true);
-    if ((isset($response['response']['error_code']) || $response === null) && $errors[$curlCode]) {
+    if ((isset($response['response']['error_code']) || $response === null) && isset($errors[$curlCode])) {
       $this->auth->authorization();
 
       return $this->request($data);
