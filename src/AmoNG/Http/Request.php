@@ -82,6 +82,6 @@ class Request
       return $this->request($data);
     }
 
-    return $response;
+    return $response ?: [];
   }
 }
