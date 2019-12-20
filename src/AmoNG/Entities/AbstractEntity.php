@@ -3,55 +3,77 @@
 namespace AmoNG\Entities;
 
 use AmoNG\Http\Authorization;
- 
+
 abstract class AbstractEntity extends Authorization
 {
 
-  protected $method_url;
+  /**
+   * URN, на который будет отправлен запрос
+   */
+  protected $api_method;
 
   public function __construct()
   {
     parent::__construct();
   }
-  
-  public function add(array $data)
+
+  /**
+   * метод для добавления новой сущности в систему
+   *
+   * @param array $data массив, содержащий структуру данных
+   * для новой сущности
+   * @return array
+   */
+  public function add(array $data): array
   {
     return $this->request([
-      'url'    => $this->method_url,
+      'url'    => $this->api_method,
       'method' => 'POST',
       'data'   => ['add' => [$data]]
     ])['_embedded']['items'];
   }
 
-  public function update(array $data)
+    /**
+   * метод для обновления сущности в системе
+   *
+   * @param array $data массив, содержащий структуру данных
+   * для обновления сущности
+   * @return array
+   */
+  public function update(array $data): array
   {
     return $this->request([
-      'url'    => $this->method_url,
+      'url'    => $this->api_method,
       'method' => 'POST',
       'data'   => ['update' => [$data]]
     ])['_embedded']['items'];
   }
 
   //допилить: если сущность найдена одна, то обрезать ее по [0] 
-
-  public function get(array $params = [])
+  /**
+   * метод для получения сущности из системы
+   *
+   * @param array $data необязательный параметр. необходим 
+   * для получения сущности по заданным параметрам
+   * @return array
+   */
+  public function get(array $data = []): array
   {
-    $test = $this->method_url;
-    $urn = '';
-    foreach ($params as $key => $val) {
+    $params = '';
+    foreach ($data as $key => $val) {
       if (!$val) continue;
-      $urn .= $key . '=';
+      $params .= $key . '=';
       if (is_array($val))
-        $urn .= implode(',', $val);
+        $params .= implode(',', $val);
       else
-        $urn .= $val;
-      if (next($params))
-        $urn .= '&';
+        $params .= $val;
+      if (next($data))
+        $params .= '&';
     }
+    
     return $this->request([
-      'url' => $this->method_url . '?' . $urn,
+      'url' => $this->api_method . '?' . $params,
       'method' => 'GET'
     ])['_embedded']['items'];
   }
-
 }
